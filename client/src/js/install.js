@@ -1,30 +1,27 @@
-const installButton = document.querySelector('#buttonInstall');
-let deferredPrompt;
+const butInstall = document.getElementById('buttonInstall');
 
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent the mini-infobar from appearing on mobile
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI to notify the user they can install the PWA
-  installButton.style.display = 'block';
+window.addEventListener('beforeinstallprompt', (event) => {
+	// Store the triggered events
+	window.deferredPrompt = event;
+
+	// Remove the hidden class from the button.
+	butInstall.classList.toggle('hidden', false);
 });
 
-installButton.addEventListener('click', (e) => {
-  // Hide the install button, then prompt the user to install the PWA
-  installButton.style.display = 'none';
-  deferredPrompt.prompt();
-  // Wait for the user to respond to the prompt
-  deferredPrompt.userChoice.then((choiceResult) => {
-    if (choiceResult.outcome === 'accepted') {
-      console.log('User accepted the install prompt');
-    } else {
-      console.log('User dismissed the install prompt');
-    }
-    deferredPrompt = null;
-  });
+butInstall.addEventListener('click', async () => {
+	const promptEvent = window.deferredPrompt;
+
+	if (!promptEvent) {
+		return;
+	}
+	// Show prompt
+	promptEvent.prompt();
+	// Reset the deferred prompt variable, it can only be used once.
+	window.deferredPrompt = null;
+	butInstall.classList.toggle('hidden', true);
 });
 
-window.addEventListener('appinstalled', (evt) => {
-  console.log('J.A.T.E. was installed successfully!', evt);
+window.addEventListener('appinstalled', (event) => {
+	// Clear prompt
+	window.deferredPrompt = null;
 });
