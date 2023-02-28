@@ -9,7 +9,6 @@ module.exports = () => {
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
-      
     },
     output: {
       filename: '[name].bundle.js',
@@ -26,6 +25,11 @@ module.exports = () => {
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
+        additionalManifestEntries: [
+          { url: '/', revision: null },
+          { url: '/index.html', revision: null },
+          { url: '/manifest.json', revision: null },
+        ],
       }),
 
       new WebpackPwaManifest({
@@ -34,7 +38,7 @@ module.exports = () => {
         description: 'Just Another Text Editor', 
         display: 'standalone',
         background_color: '#1e1e1e',
-				theme_color: '#1e1e1e',
+        theme_color: '#1e1e1e',
         start_url: '/',
         publicPath: '/',
         fingerprints: false,

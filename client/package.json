@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "webpack-dev-server --open",
     "build": "webpack --mode production",
-    "start": "webpack --watch"
+    "start": "webpack --mode production && http-server dist -p 8080"
   },
   "author": "2U",
   "license": "MIT",
