@@ -4,10 +4,10 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "server": "nodemon server.js --ignore client"
+        "server": "nodemon server.js"
     },
     "keywords": [],
-    "author": "",
+    "author": "unnamedmistress",
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.1"

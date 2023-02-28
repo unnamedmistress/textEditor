@@ -1,12 +1,12 @@
 {
   "name": "JATE",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --open",
     "build": "webpack --mode production",
     "start": "webpack --watch"
   },
   "author": "2U",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/plugin-transform-runtime": "^7.15.0",
